@@ -1,17 +1,24 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:speechless/app_routes.dart';
+import 'package:speechless/provider/navigation_provider.dart';
+import 'package:speechless/views/connect/connect_page.dart';
 import 'package:speechless/views/home/home_page.dart';
+import 'package:speechless/views/host/host_page.dart';
+import 'package:speechless/views/join/join_page.dart';
 
 void main() {
   runApp(
-      /*MultiProvider(
-        providers: [],
-        child: const ConnectApp(),
-      )*/
-      const SpeechlessApp()
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => NavigationIndex()),
+        ],
+        child: const SpeechlessApp(),
+      )
   );
 }
 
@@ -30,7 +37,6 @@ class SpeechlessApp extends StatelessWidget {
       // add scrollbehavior for web
       scrollBehavior: kIsWeb ? ScrollConfiguration.of(context).copyWith(
         dragDevices: {
-          // Allows to swipe in web browsers
           PointerDeviceKind.touch,
           PointerDeviceKind.mouse
         },
@@ -40,16 +46,18 @@ class SpeechlessApp extends StatelessWidget {
 
       initialRoute: '/',
       onGenerateRoute: (settings) {
-        if (settings.name == '/') {
+        if (settings.name == AppRoutes.home) {
           return PageRouteBuilder(pageBuilder: (_, __, ___) => const HomePage());
 
-        }
-        /*else if (settings.name == '/search') {
-          return PageRouteBuilder(pageBuilder: (_, __, ___) => SearchPage(input: settings.arguments as String));
+        } else if (settings.name == AppRoutes.connect) {
+          return PageRouteBuilder(pageBuilder: (_, __, ___) => ConnectPage(route: settings.arguments! as String));
 
-        } else if (settings.name == '/details') {
-          return PageRouteBuilder(pageBuilder: (_, __, ___) => DetailsPage(index: settings.arguments as int));
-        }*/
+        } else if (settings.name == AppRoutes.join) {
+          return PageRouteBuilder(pageBuilder: (_, __, ___) => JoinPage(socket: settings.arguments! as Socket));
+
+        } else if (settings.name == AppRoutes.host) {
+          return PageRouteBuilder(pageBuilder: (_, __, ___) => HostPage(socket: settings.arguments! as Socket));
+        }
 
         return null;
       },
