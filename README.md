@@ -1,16 +1,35 @@
-# speechless
+# speech:less
 
-A new Flutter project.
+one app, many languages
 
-## Getting Started
+## Bundeswettbewerb Kuenstliche Intelligenz
 
-This project is a starting point for a Flutter application.
+Ein Projekt fuer den Bundeswettbewerb Kuenstliche Intelligenz 2022
 
-A few resources to get you started if this is your first Flutter project:
+## weitere Infos
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Zum jetzigen Zeitpunkt funktioniert leider das builden fuer iOS noch nicht. Dort gibt es gerade noch Probleme mit dem GCC compiler. Aus diesem Grund funktioniert die App gerade nur fuer Android.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Die Serverdateien kann man [hier](https://github.com/Mitjaaa/speechless-server) einsehen.
+
+## Getting started
+
+### Vorraussetzungen
+Um speechless starten zu koennen, wird folgendes benoetigt:
+* flutter - _download flutter at [https://docs.flutter.dev/get-started/install](https://docs.flutter.dev/get-started/install)_
+  
+### Installation
+1. Die repo clonen:
+   ```sh
+   git clone https://github.com/Mitjaaa/speechless.git
+   ```
+2. Terminal oeffnen und zum Projektverzeichnis navigieren
+3. Die benoetigten dependencies herunterladen mit:
+   ```sh
+   flutter pub get
+   ```
+#### Starten
+4. speechless starten mit folgendem command:
+   ```sh
+   flutter run -d [Device ID]
+   ```
